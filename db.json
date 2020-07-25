@@ -1,18 +1,49 @@
 {
-    "posts": [
-      {
-        "id": 1,
-        "completed": true
-      },
-      {
-        "id": 2,
-        "description": "this is a test",
-        "completed": true
-      },
-      {
-        "id": 3,
-        "description": "this is my first test",
-        "completed": true
-      }
-    ]
-  }
+  "posts": [
+    {
+      "title": "my name is jake",
+      "body": "hey jake",
+      "id": 1
+    },
+    {
+      "title": "hello",
+      "body": "asdf",
+      "id": 2
+    },
+    {
+      "title": "this is a test title",
+      "body": "this is my first testb adsf asdf",
+      "id": 3
+    },
+    {
+      "title": "hello",
+      "body": "helllofoofof",
+      "id": 4
+    },
+    {
+      "title": "this is my first post",
+      "body": "body of first post",
+      "id": 5
+    },
+    {
+      "title": "ajsdkfaj",
+      "body": ";aklsfja;lksjdf;alksjdf;lkasjdf",
+      "id": 6
+    },
+    {
+      "title": "New Post",
+      "body": "Who dis????",
+      "id": 7
+    },
+    {
+      "title": "fasdfasd",
+      "body": "asdfasdfasdfasdfsdf",
+      "id": 8
+    },
+    {
+      "title": "Add test",
+      "body": "Adding a post now",
+      "id": 9
+    }
+  ]
+}
