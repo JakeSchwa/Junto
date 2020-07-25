@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
-import PostForm from "../../components/PostForm";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const AddPostPage = ({ history }) => {
-  const handleSubmit = async (event, title, body) => {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+
+  const handleChangeTitle = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleChangeBody = (event) => {
+    setBody(event.target.value);
+  };
+
+  const handleAddPost = async (event) => {
     event.preventDefault();
     const res = await fetch("/posts", {
       method: "POST",
@@ -17,11 +29,36 @@ const AddPostPage = ({ history }) => {
       }),
     });
     const data = await res.json();
-    console.log("Adding new post...", title, body);
+    console.log("Adding new post...", title, body, data);
     history.push("/");
   };
 
-  return <PostForm handleSubmit={handleSubmit} isEditing={false} />;
+  return (
+    <div>
+      <Form onSubmit={handleAddPost}>
+        <br />
+        <Form.Group controlId='formBasicPost'>
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='Title'
+            value={title}
+            onChange={handleChangeTitle}
+          />
+          <br />
+          <Form.Control
+            as='textarea'
+            placeholder='Body'
+            value={body}
+            onChange={handleChangeBody}
+          />
+        </Form.Group>
+        <Button variant='primary' type='submit'>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
 };
 
 export default withRouter(AddPostPage);
