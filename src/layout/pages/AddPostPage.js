@@ -36,8 +36,7 @@ const AddPostPage = ({ history }) => {
         body: body,
       }),
     });
-    const data = await res.json();
-    console.log("Adding new post...", title, body, data);
+    await res.json();
     history.push("/");
   };
 

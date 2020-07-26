@@ -6,14 +6,24 @@
       "id": 1
     },
     {
-      "title": "New Post",
-      "body": "Who dis????",
+      "title": "New Post fads",
+      "body": "Who dis???? asdf",
       "id": 7
     },
     {
       "title": "Add test",
       "body": "Adding a post now as;lkdfj asdasdfssssf\n asd\nfasdf asdfasdfasdf\nasdfasdfasd\nsadfsadf\nsadfsadfsadasdfsadff",
       "id": 9
+    },
+    {
+      "title": "test",
+      "body": "test",
+      "id": 10
+    },
+    {
+      "title": "This is a final test. (edited)",
+      "body": "this is the final test\n\nI just edited it ",
+      "id": 11
     }
   ]
 }

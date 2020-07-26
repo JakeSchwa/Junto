@@ -36,8 +36,7 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
         body: body,
       }),
     });
-    const data = await res.json();
-    console.log("Editing post...", title, body, data);
+    await res.json();
     history.push("/");
   };
 
@@ -46,8 +45,7 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
     const res = await fetch(`/posts/${params.postId}`, {
       method: "DELETE",
     });
-    const data = await res.json();
-    console.log("Deleting post...", title, body, data);
+    await res.json();
     history.push("/");
   };
 
