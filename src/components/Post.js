@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   return (
-    <Card style={{ padding: "10px" }}>
-      <Link to={{ pathname: `/edit/${post.id}`, state: { post } }}>
-        <GrEdit />
-      </Link>
+    <Card className="card">
       <Card.Body>
-        <Card.Title>{post.title}</Card.Title>
+        <Card.Title>
+          <h3>
+            {post.title}
+          </h3>
+          <Link className="editPostBtn" to={{ pathname: `/edit/${post.id}`, state: { post } }}>
+            <GrEdit />
+          </Link>
+        </Card.Title>
         <Card.Text>{post.body}</Card.Text>
       </Card.Body>
     </Card>
