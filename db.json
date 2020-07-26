@@ -1,19 +1,9 @@
 {
   "posts": [
     {
-      "title": "my name is Jared",
-      "body": "hey jake this is Jared",
+      "title": "my name is Jake",
+      "body": "hey Jared this is Jake",
       "id": 1
-    },
-    {
-      "title": "hello",
-      "body": "asdf hello world",
-      "id": 2
-    },
-    {
-      "title": "this is a test title",
-      "body": "this is my first testb adsf asdf",
-      "id": 3
     },
     {
       "title": "this is my first post",
