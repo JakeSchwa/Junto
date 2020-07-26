@@ -4,14 +4,24 @@ import { GrEdit } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const date = new Date().toLocaleDateString(undefined, options);
+
   return (
-    <Card className="card">
+    <Card className='card'>
       <Card.Body>
         <Card.Title>
-          <h3>
-            {post.title}
-          </h3>
-          <Link className="editPostBtn" to={{ pathname: `/edit/${post.id}`, state: { post } }}>
+          <span className='postDate'>{date}</span>
+          <h3>{post.title}</h3>
+          <Link
+            className='editPostBtn'
+            to={{ pathname: `/edit/${post.id}`, state: { post } }}
+          >
             <GrEdit />
           </Link>
         </Card.Title>
