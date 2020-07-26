@@ -1,13 +1,13 @@
 {
   "posts": [
     {
-      "title": "my name is jake",
-      "body": "hey jake",
+      "title": "my name is Jared",
+      "body": "hey jake this is Jared",
       "id": 1
     },
     {
       "title": "hello",
-      "body": "asdf",
+      "body": "asdf hello world",
       "id": 2
     },
     {
@@ -16,19 +16,9 @@
       "id": 3
     },
     {
-      "title": "hello",
-      "body": "helllofoofof",
-      "id": 4
-    },
-    {
       "title": "this is my first post",
       "body": "body of first post",
       "id": 5
-    },
-    {
-      "title": "ajsdkfaj",
-      "body": ";aklsfja;lksjdf;alksjdf;lkasjdf",
-      "id": 6
     },
     {
       "title": "New Post",
@@ -36,14 +26,14 @@
       "id": 7
     },
     {
-      "title": "fasdfasd",
-      "body": "asdfasdfasdfasdfsdf",
-      "id": 8
-    },
-    {
       "title": "Add test",
       "body": "Adding a post now",
       "id": 9
+    },
+    {
+      "title": "Adding new post",
+      "body": "This is a new post yo",
+      "id": 10
     }
   ]
 }
