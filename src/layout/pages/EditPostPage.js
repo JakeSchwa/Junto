@@ -16,6 +16,14 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
     setBody(event.target.value);
   };
 
+  const submitEditDisabled = () => {
+    if(title === "" || body === "") {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const handleEditPost = async (event) => {
     event.preventDefault();
     const res = await fetch(`/posts/${params.postId}`, {
@@ -63,12 +71,14 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
             onChange={handleChangeBody}
           />
         </Form.Group>
-        <Button variant='success' type='submit'>
-          Save
-        </Button>
-        <Button variant='danger' onClick={handleDeletePost}>
-          Delete
-        </Button>
+        <div id="editFormBtns">
+          <Button variant='success' type='submit' disabled={submitEditDisabled()}>
+            Save
+          </Button>
+          <Button variant='outline-danger' onClick={handleDeletePost}>
+            Delete
+          </Button>
+        </div>
       </Form>
     </div>
   );

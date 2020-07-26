@@ -15,6 +15,14 @@ const AddPostPage = ({ history }) => {
   const handleChangeBody = (event) => {
     setBody(event.target.value);
   };
+   
+  const submitPostDisabled = () => {
+    if(title === "" || body === "") {
+      return true
+    } else {
+      return false
+    }
+  }
 
   const handleAddPost = async (event) => {
     event.preventDefault();
@@ -53,7 +61,7 @@ const AddPostPage = ({ history }) => {
             onChange={handleChangeBody}
           />
         </Form.Group>
-        <Button variant='primary' type='submit'>
+        <Button variant='primary' type='submit' disabled={submitPostDisabled()}>
           Submit
         </Button>
       </Form>
