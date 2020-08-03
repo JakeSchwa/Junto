@@ -34,6 +34,7 @@ const AddPostPage = ({ history }) => {
       body: JSON.stringify({
         title: title,
         body: body,
+        userId: 1
       }),
     });
     await res.json();

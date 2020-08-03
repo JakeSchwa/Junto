@@ -34,6 +34,7 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
       body: JSON.stringify({
         title: title,
         body: body,
+        userId: 1
       }),
     });
     await res.json();

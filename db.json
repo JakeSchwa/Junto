@@ -1,29 +1,74 @@
 {
   "posts": [
     {
-      "title": "my name is Jake",
+      "title": "my name is Jake edit. looking for errors in console log",
       "body": "hey Jared this is Jake",
+      "userId": 1,
       "id": 1
-    },
-    {
-      "title": "New Post fads",
-      "body": "Who dis???? asdf",
-      "id": 7
     },
     {
       "title": "Add test",
       "body": "Adding a post now as;lkdfj asdasdfssssf\n asd\nfasdf asdfasdfasdf\nasdfasdfasd\nsadfsadf\nsadfsadfsadasdfsadff",
-      "id": 9
+      "id": 9,
+      "userId": 1
     },
     {
       "title": "test",
       "body": "test",
-      "id": 10
+      "id": 10,
+      "userId": 2
     },
     {
       "title": "This is a final test. (edited)",
       "body": "this is the final test\n\nI just edited it ",
-      "id": 11
+      "id": 11,
+      "userId": 2
+    },
+    {
+      "title": "slingshots",
+      "body": "watch my tut on slingshot shooting",
+      "id": 12,
+      "userId": 3
+    },
+    {
+      "title": "Jazz muzic",
+      "body": "Sometimes I play music ",
+      "id": 13,
+      "userId": 4
+    },
+    {
+      "title": "I just added userId to the db.json file",
+      "body": "I hope that it still adds this as a post with userID = 1.\n\nIt worked. Now I will try editing the post.\n\nIt worked. I am now editing the post. hope it still works",
+      "userId": 1,
+      "id": 14
+    },
+    {
+      "title": "Bed Time",
+      "body": "this is the final test before bed.",
+      "userId": 1,
+      "id": 15
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Jake Schwarztrubaer",
+      "email": "jakeschwa@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Dave Chappel ",
+      "email": "dave@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Dave Goliath",
+      "email": "bb@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "Dave Brubeck",
+      "email": "Dave@gmail.com"
     }
   ]
 }

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
-const PostList = () => {
+const PostList = ({userId, self}) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getPosts();
-  }, []);
+    getPosts(userId);
+  },[userId]);
 
-  const getPosts = async () => {
+  const getPosts = async (userId) => {
     try {
-      const res = await fetch("/posts");
+      const res = await fetch(`/posts/?userId=${userId}`);
       const data = await res.json();
       setPosts(data);
     } catch (err) {
@@ -21,7 +21,7 @@ const PostList = () => {
 
   const displayPosts = () => {
     return posts.map((post) => (
-      <Post key={post.id} post={post} />
+      <Post key={post.id} post={post} self={self}/>
     ));
   };
 

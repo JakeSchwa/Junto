@@ -7,6 +7,8 @@ import HomePage from "./layout/pages/HomePage";
 import AddPostPage from "./layout/pages/AddPostPage";
 import ErrorPage from "./layout/pages/ErrorPage";
 import EditPostPage from "./layout/pages/EditPostPage";
+import FriendsListPage from "./layout/pages/FriendsListPage";
+import FriendsPage from "./layout/pages/FriendsPage"
 
 import Container from "react-bootstrap/Container";
 
@@ -19,6 +21,8 @@ const App = () => {
           <Route exact path='/' component={HomePage} />
           <Route path='/post' component={AddPostPage} />
           <Route path='/edit/:postId' component={EditPostPage} />
+          <Route path='/friends' component={FriendsListPage} />
+          <Route path='/friend/:userId' component={FriendsPage} />
           <Route component={ErrorPage} />
         </Switch>
       </Container>
