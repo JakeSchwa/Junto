@@ -1,8 +1,8 @@
-import React from "react";
-import FriendsList from "../../components/FriendsList"
+import React from 'react';
+import FriendsList from '../../components/FriendsList';
 
 const FriendsListPage = () => {
-  return <FriendsList/>;
+  return <FriendsList />;
 };
 
 export default FriendsListPage;

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const EditPostPage = ({ history, match: { params }, location: { state } }) => {
-  const [title, setTitle] = useState(state.post ? state.post.title : "");
-  const [body, setBody] = useState(state.post ? state.post.body : "");
+  const [title, setTitle] = useState(state.post ? state.post.title : '');
+  const [body, setBody] = useState(state.post ? state.post.body : '');
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -17,37 +17,37 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
   };
 
   const submitEditDisabled = () => {
-    if(title === "" || body === "") {
-      return true
+    if (title === '' || body === '') {
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   const handleEditPost = async (event) => {
     event.preventDefault();
     const res = await fetch(`/posts/${params.postId}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         title: title,
         body: body,
-        userId: 1
+        userId: 1,
       }),
     });
     await res.json();
-    history.push("/");
+    history.push('/');
   };
 
   const handleDeletePost = async (event) => {
     event.preventDefault();
     const res = await fetch(`/posts/${params.postId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     await res.json();
-    history.push("/");
+    history.push('/');
   };
 
   return (
@@ -70,8 +70,12 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
             onChange={handleChangeBody}
           />
         </Form.Group>
-        <div id="editFormBtns">
-          <Button variant='success' type='submit' disabled={submitEditDisabled()}>
+        <div id='editFormBtns'>
+          <Button
+            variant='success'
+            type='submit'
+            disabled={submitEditDisabled()}
+          >
             Save
           </Button>
           <Button variant='outline-danger' onClick={handleDeletePost}>
