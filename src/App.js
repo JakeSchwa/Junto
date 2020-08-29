@@ -9,6 +9,7 @@ import ErrorPage from './layout/pages/ErrorPage';
 import EditPostPage from './layout/pages/EditPostPage';
 import FriendsListPage from './layout/pages/FriendsListPage';
 import FriendsPage from './layout/pages/FriendsPage';
+import UserCreationPage from './layout/pages/UserCreationPage';
 
 import Container from 'react-bootstrap/Container';
 
@@ -19,6 +20,7 @@ const App = () => {
       <Container fluid='sm'>
         <Switch>
           <Route exact path='/' component={HomePage} />
+          <Route exact path='/newUser' component={UserCreationPage} />
           <Route path='/post' component={AddPostPage} />
           <Route path='/edit/:postId' component={EditPostPage} />
           <Route path='/friends' component={FriendsListPage} />
