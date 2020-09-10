@@ -20,18 +20,17 @@ function UserCreationPage() {
     'Must match password'
   );
 
-  const [firstNameValid, setFirstNameValid] = useState(true);
-  const [lastNameValid, setLastNameValid] = useState(true);
-  const [emailValid, setEmailValid] = useState(true);
-  const [passwordValid, setPasswordValid] = useState(true);
-  const [passwordConfNameValid, setPasswordConfValid] = useState(true);
+  const [firstNameValid, setFirstNameValid] = useState('valid');
+  const [lastNameValid, setLastNameValid] = useState('valid');
+  const [emailValid, setEmailValid] = useState('valid');
+  const [passwordValid, setPasswordValid] = useState('valid');
+  const [passwordConfNameValid, setPasswordConfValid] = useState('valid');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     if (validateSubmit(event.target)) {
-      const res = await postUser(event);
-      res.json();
+      await postUser(event);
     }
   };
 
@@ -50,12 +49,12 @@ function UserCreationPage() {
     })
       .then((response) => {
         if (response.status === 400) {
+          setEmailValid('invalid');
           setEmailHelper('Email is already in use. Use a diffrent email.');
-          setPasswordValid(false);
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log('There was a network error on submitting new user.');
       });
   }
 
@@ -72,10 +71,10 @@ function UserCreationPage() {
 
   const validateFirstName = (name) => {
     if (name.length >= 2 && name.length <= 50) {
-      setFirstNameValid(true);
+      setFirstNameValid('valid');
       return true;
     } else {
-      setFirstNameValid(false);
+      setFirstNameValid('invalid');
       if (name.length < 2)
         setfirstNameHelper('First Name must be longer than 1 character');
       if (name.legth > 50)
@@ -86,10 +85,10 @@ function UserCreationPage() {
 
   const validateLastName = (name) => {
     if (name.length >= 2 && name.length <= 50) {
-      setLastNameValid(true);
+      setLastNameValid('valid');
       return true;
     } else {
-      setLastNameValid(false);
+      setLastNameValid('invalid');
       if (name.length < 2)
         setLastNameHelper('Last Name must be longer than 1 character');
       if (name.legth > 50)
@@ -100,7 +99,7 @@ function UserCreationPage() {
 
   const validateEmail = (email) => {
     if (email.length >= 6 && email.length <= 256) {
-      setEmailHelper(true);
+      setEmailValid('valid');
       return true;
     } else {
       if (email.length < 6)
@@ -108,26 +107,28 @@ function UserCreationPage() {
       if (email.length > 256)
         setEmailHelper('Email must be shorter than 257 characters');
     }
-    setEmailValid(false);
+    setEmailValid('invalid');
     return false;
   };
 
   const validatePassword = (password, confirmPassword) => {
-    if (password.length < 6)
+    if (password.length < 6) {
+      setPasswordValid('invalid');
       setPasswordHelper('Password must be longer than 5 characters');
-    if (password.length > 255)
+    } else if (password.length > 255) {
+      setPasswordValid('invalid');
       setPasswordHelper('Password must be less than 256 characters');
-    if (password === confirmPassword) {
-      if (password.length >= 5 && password.length <= 255) {
-        setPasswordValid(true);
-        setPasswordConfValid(true);
-        return true;
-      }
     } else {
-      setPasswordConfValid(false);
-      setPasswordConfirmHelper('Confirm Password does not match Password');
+      if (password === confirmPassword) {
+        setPasswordValid('valid');
+        setPasswordConfValid('valid');
+        return true;
+      } else {
+        setPasswordValid('valid');
+        setPasswordConfValid('invalid');
+        setPasswordConfirmHelper('Confirm Password does not match Password');
+      }
     }
-    setPasswordValid(false);
     return false;
   };
 
@@ -137,41 +138,25 @@ function UserCreationPage() {
       <Form onSubmit={handleSubmit} noValidate>
         <Form.Group controlId='firstName' placeholder='Enter First Name'>
           <Form.Control type='input' placeholder='First Name' required />
-          <Form.Text
-            id='firstNameValid'
-            className={firstNameValid ? 'valid' : 'invalid'}
-            muted
-          >
+          <Form.Text id='firstNameValid' className={firstNameValid} muted>
             {firstNameHelper}
           </Form.Text>
         </Form.Group>
         <Form.Group controlId='lastName' placeholder='Enter Last Name'>
           <Form.Control type='input' placeholder='Last Name' required />
-          <Form.Text
-            id='lastNameHelper'
-            className={lastNameValid ? 'valid' : 'invalid'}
-            muted
-          >
+          <Form.Text id='lastNameHelper' className={lastNameValid} muted>
             {lastNameHelper}
           </Form.Text>
         </Form.Group>
         <Form.Group controlId='email' placeholder='Enter Email'>
           <Form.Control type='email' placeholder='Email' required />
-          <Form.Text
-            id='emailHelper'
-            className={emailValid ? 'valid' : 'invalid'}
-            muted
-          >
+          <Form.Text id='emailHelper' className={emailValid} muted>
             {emailHelper}
           </Form.Text>
         </Form.Group>
         <Form.Group controlId='password'>
           <Form.Control type='password' placeholder='Password' />
-          <Form.Text
-            id='passwordHelper'
-            className={passwordValid ? 'valid' : 'invalid'}
-            muted
-          >
+          <Form.Text id='passwordHelper' className={passwordValid} muted>
             {passwordHelper}
           </Form.Text>
         </Form.Group>
@@ -179,7 +164,7 @@ function UserCreationPage() {
           <Form.Control type='password' placeholder='Confirm Password' />
           <Form.Text
             id='passwordHelper'
-            className={passwordConfNameValid ? 'valid' : 'invalid'}
+            className={passwordConfNameValid}
             muted
           >
             {passwordConfirmHelper}
