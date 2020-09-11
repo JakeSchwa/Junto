@@ -136,19 +136,19 @@ function UserCreationPage() {
     <div id='createUserForm'>
       <h1 id='createUserHeader'>Create User</h1>
       <Form onSubmit={handleSubmit} noValidate>
-        <Form.Group controlId='firstName' placeholder='Enter First Name'>
+        <Form.Group controlId='firstName'>
           <Form.Control type='input' placeholder='First Name' required />
           <Form.Text id='firstNameValid' className={firstNameValid} muted>
             {firstNameHelper}
           </Form.Text>
         </Form.Group>
-        <Form.Group controlId='lastName' placeholder='Enter Last Name'>
+        <Form.Group controlId='lastName'>
           <Form.Control type='input' placeholder='Last Name' required />
           <Form.Text id='lastNameHelper' className={lastNameValid} muted>
             {lastNameHelper}
           </Form.Text>
         </Form.Group>
-        <Form.Group controlId='email' placeholder='Enter Email'>
+        <Form.Group controlId='email'>
           <Form.Control type='email' placeholder='Email' required />
           <Form.Text id='emailHelper' className={emailValid} muted>
             {emailHelper}
