@@ -31,6 +31,10 @@
   color: red !important;
 }
 
+#logoutBtn {
+  margin-right: 20px;
+}
+
 #createUserForm {
   padding-top: 50px;
   padding-left: 250px;

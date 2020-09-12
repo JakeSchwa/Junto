@@ -7,8 +7,8 @@ function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    await fetch('/api/users', {
-      method: 'PUT',
+    await fetch('/api/auth', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -22,7 +22,7 @@ function LoginPage() {
   return (
     <div id='loginForm'>
       <h1 id='loginHeader'>Login</h1>
-      <Form onSubmit={handleSubmit} noValidate>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId='email'>
           <Form.Control type='email' placeholder='User Email' required />
           <Form.Text id='emailHelper' muted>
