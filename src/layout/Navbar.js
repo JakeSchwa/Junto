@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const TopNavbar = ({ history }) => {
+const TopNavbar = () => {
+  const history = useHistory();
+
   const logout = async () => {
     await fetch('api/auth/logout', {
       method: 'POST',
@@ -35,4 +37,4 @@ const TopNavbar = ({ history }) => {
   );
 };
 
-export default withRouter(TopNavbar);
+export default TopNavbar;

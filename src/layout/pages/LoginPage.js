@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom';
 
 function LoginPage() {
+  const history = useHistory();
+
+  const [helperText, setHelperText] = useState('');
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    await fetch('/api/auth', {
+    const res = await fetch('/api/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -17,6 +22,12 @@ function LoginPage() {
         password: event.target.password.value,
       }),
     });
+    if (res.status !== 200) {
+      setHelperText('Invalid Username or Password');
+    } else {
+      history.push('/');
+      setHelperText('');
+    }
   };
 
   return (
@@ -38,6 +49,7 @@ function LoginPage() {
         <Button variant='primary' type='submit'>
           Submit
         </Button>
+        <div id='loginHellerText'>{helperText}</div>
       </Form>
     </div>
   );

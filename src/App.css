@@ -44,3 +44,8 @@
 #createUserHeader {
   padding-bottom: 25px;
 }
+
+#loginHellerText {
+text-align: center;
+color: red;
+}
