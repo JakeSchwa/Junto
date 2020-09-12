@@ -14,22 +14,26 @@ import loginPage from './layout/pages/LoginPage';
 
 import Container from 'react-bootstrap/Container';
 
+import { UserProvider } from './context/user-context';
+
 const App = () => {
   return (
     <div className='App'>
-      <TopNavbar />
-      <Container fluid='sm'>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/newUser' component={UserCreationPage} />
-          <Route exact path='/login' component={loginPage} />
-          <Route exact path='/post' component={AddPostPage} />
-          <Route exact path='/edit/:postId' component={EditPostPage} />
-          <Route exact path='/friends' component={FriendsListPage} />
-          <Route exact path='/friends/:userId' component={FriendsPage} />
-          <Route component={ErrorPage} />
-        </Switch>
-      </Container>
+      <UserProvider>
+        <TopNavbar />
+        <Container fluid='sm'>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/newUser' component={UserCreationPage} />
+            <Route exact path='/login' component={loginPage} />
+            <Route exact path='/post' component={AddPostPage} />
+            <Route exact path='/edit/:postId' component={EditPostPage} />
+            <Route exact path='/friends' component={FriendsListPage} />
+            <Route exact path='/friends/:userId' component={FriendsPage} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </Container>
+      </UserProvider>
     </div>
   );
 };
