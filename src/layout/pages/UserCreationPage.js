@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function UserCreationPage() {
+  const history = useHistory();
+
   const [firstNameHelper, setfirstNameHelper] = useState(
     'First Name must be between 2 and 50 characters long'
   );
@@ -30,12 +33,22 @@ function UserCreationPage() {
     event.preventDefault();
     event.stopPropagation();
     if (validateSubmit(event.target)) {
-      await postUser(event);
+      try {
+        const res = await postUser(event);
+        if (res.status === 400) {
+          setEmailValid('invalid');
+          setEmailHelper('Email is already in use. Use a diffrent email.');
+        } else if (res.status === 200) {
+          history.push("/");
+        } else throw new Error('There was a network error on submitting new user.')
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
-  async function postUser(event) {
-    return await fetch('/api/users', {
+  const postUser = (event) => {
+    return fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,15 +60,6 @@ function UserCreationPage() {
         password: event.target.password.value,
       }),
     })
-      .then((response) => {
-        if (response.status === 400) {
-          setEmailValid('invalid');
-          setEmailHelper('Email is already in use. Use a diffrent email.');
-        }
-      })
-      .catch((error) => {
-        console.log('There was a network error on submitting new user.');
-      });
   }
 
   const validateSubmit = (event) => {

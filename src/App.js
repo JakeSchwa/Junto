@@ -23,10 +23,10 @@ const App = () => {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/newUser' component={UserCreationPage} />
           <Route exact path='/login' component={loginPage} />
-          <Route path='/post' component={AddPostPage} />
-          <Route path='/edit/:postId' component={EditPostPage} />
-          <Route path='/friends' component={FriendsListPage} />
-          <Route path='/friend/:userId' component={FriendsPage} />
+          <Route exact path='/post' component={AddPostPage} />
+          <Route exact path='/edit/:postId' component={EditPostPage} />
+          <Route exact path='/friends' component={FriendsListPage} />
+          <Route exact path='/friends/:userId' component={FriendsPage} />
           <Route component={ErrorPage} />
         </Switch>
       </Container>
