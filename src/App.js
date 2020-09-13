@@ -10,7 +10,7 @@ import EditPostPage from './layout/pages/EditPostPage';
 import FriendsListPage from './layout/pages/FriendsListPage';
 import FriendsPage from './layout/pages/FriendsPage';
 import UserCreationPage from './layout/pages/UserCreationPage';
-import loginPage from './layout/pages/LoginPage';
+import LoginPage from './layout/pages/LoginPage';
 
 import Container from 'react-bootstrap/Container';
 
@@ -25,7 +25,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/newUser' component={UserCreationPage} />
-            <Route exact path='/login' component={loginPage} />
+            <Route exact path='/login' component={LoginPage} />
             <Route exact path='/post' component={AddPostPage} />
             <Route exact path='/edit/:postId' component={EditPostPage} />
             <Route exact path='/friends' component={FriendsListPage} />

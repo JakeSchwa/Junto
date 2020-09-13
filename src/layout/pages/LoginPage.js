@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
+import { useUserDispatch } from '../../context/user-context';
 
 function LoginPage() {
+  const dispatch = useUserDispatch();
   const history = useHistory();
 
   const [helperText, setHelperText] = useState('');
@@ -23,8 +25,10 @@ function LoginPage() {
       }),
     });
     if (res.status !== 200) {
-      setHelperText('Invalid Username or Password');
+      setHelperText('Invalid Email or Password');
     } else {
+      const user = await res.json();
+      dispatch({type: 'set', payload: user})
       history.push('/');
       setHelperText('');
     }
