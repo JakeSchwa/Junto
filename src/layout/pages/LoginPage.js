@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { useUserDispatch } from '../../context/user-context';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from 'react-router-dom';
-import { useUserDispatch } from '../../context/user-context';
 
 function LoginPage() {
   const dispatch = useUserDispatch();
   const history = useHistory();
 
-  const [helperText, setHelperText] = useState('');
+  const [errorText, setErrorText] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,18 +25,18 @@ function LoginPage() {
       }),
     });
     if (res.status !== 200) {
-      setHelperText('Invalid Email or Password');
+      setErrorText('Invalid Email or Password');
     } else {
       const user = await res.json();
-      dispatch({type: 'set', payload: user})
+      dispatch({type: 'set', payload: user});
       history.push('/');
-      setHelperText('');
+      setErrorText('');
     }
   };
 
   return (
-    <div id='loginForm'>
-      <h1 id='loginHeader'>Login</h1>
+    <div id='loginRegisterFormContainer'>
+      <h1 id='loginRegisterFormHeader'>Login</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='email'>
           <Form.Control type='email' placeholder='User Email' required />
@@ -53,8 +53,11 @@ function LoginPage() {
         <Button variant='primary' type='submit'>
           Submit
         </Button>
-        <div id='loginHellerText'>{helperText}</div>
       </Form>
+      <div id="loginRegisterLink">
+        <Link to="/newUser">New user?</Link>
+      </div>
+      <div id='loginRegisterErrorText'>{errorText}</div>
     </div>
   );
 }

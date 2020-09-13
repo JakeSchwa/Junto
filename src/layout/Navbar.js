@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
-import { useUserState } from "../context/user-context";
+import { useUserState, useUserDispatch } from "../context/user-context";
 
 const TopNavbar = () => {
-	const { user } = useUserState();
+  const { user } = useUserState();
+  const dispatch = useUserDispatch();
 	const history = useHistory();
 
 	const logout = async () => {
-		await fetch("api/auth/logout", {
+		const res = await fetch("api/auth/logout", {
 			method: "POST",
-		});
-		history.push("/login");
+    });
+    if (res.status === 200) {
+      dispatch({type: 'reset'});
+      history.push("/login");
+    }
 	};
 
 	return (
