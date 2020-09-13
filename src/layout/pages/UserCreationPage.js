@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useUserDispatch } from '../../context/user-context';
 
 import Form from 'react-bootstrap/Form';
@@ -30,6 +30,7 @@ function UserCreationPage() {
   const [emailValid, setEmailValid] = useState('valid');
   const [passwordValid, setPasswordValid] = useState('valid');
   const [passwordConfNameValid, setPasswordConfValid] = useState('valid');
+  const [errorText, setErrorText] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +47,7 @@ function UserCreationPage() {
           history.push("/");
         } else throw new Error('There was a network error on submitting new user.')
       } catch (error) {
+        setErrorText("Could not create new user. Please try again.")
         console.log(error);
       }
     }
@@ -141,8 +143,8 @@ function UserCreationPage() {
   };
 
   return (
-    <div id='createUserForm'>
-      <h1 id='createUserHeader'>Create User</h1>
+    <div id='loginRegisterFormContainer'>
+      <h1 id='loginRegisterFormHeader'>Create User</h1>
       <Form onSubmit={handleSubmit} noValidate>
         <Form.Group controlId='firstName'>
           <Form.Control type='input' placeholder='First Name' required />
@@ -182,6 +184,10 @@ function UserCreationPage() {
           Submit
         </Button>
       </Form>
+      <div id="loginRegisterLink">
+        <Link to="/login">Already a user?</Link>
+      </div>
+      <div id='loginRegisterErrorText'>{errorText}</div>
     </div>
   );
 }

@@ -35,17 +35,22 @@
   margin-right: 20px;
 }
 
-#createUserForm {
+#loginRegisterFormContainer {
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 auto;
   padding-top: 50px;
-  padding-left: 250px;
-  padding-right: 250px;
 }
 
-#createUserHeader {
+#loginRegisterFormHeader {
   padding-bottom: 25px;
 }
 
-#loginHellerText {
-text-align: center;
-color: red;
+#loginRegisterErrorText {
+  text-align: center;
+  color: red;
+}
+
+#loginRegisterLink {
+  text-align: right;
 }
