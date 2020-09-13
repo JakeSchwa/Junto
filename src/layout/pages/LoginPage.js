@@ -28,7 +28,8 @@ function LoginPage() {
       setErrorText('Invalid Email or Password');
     } else {
       const user = await res.json();
-      dispatch({ type: 'set', payload: user });
+      user.isLoggedIn = true
+      dispatch({type: 'set', payload: user});
       history.push('/');
       setErrorText('');
     }
@@ -54,8 +55,8 @@ function LoginPage() {
           Submit
         </Button>
       </Form>
-      <div id='loginRegisterLink'>
-        <Link to='/register'>New user?</Link>
+      <div id="loginRegisterLink">
+        <Link to="/register">New user?</Link>
       </div>
       <div id='loginRegisterErrorText'>{errorText}</div>
     </div>

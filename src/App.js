@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import TopNavbar from './layout/Navbar';
@@ -14,7 +14,7 @@ import LoginPage from './layout/pages/LoginPage';
 
 import Container from 'react-bootstrap/Container';
 
-import { UserProvider } from './context/user-context';
+import { UserProvider, useUserState } from './context/user-context';
 
 const App = () => {
   return (
@@ -23,19 +23,31 @@ const App = () => {
         <TopNavbar />
         <Container fluid='sm'>
           <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/register' component={UserCreationPage} />
             <Route exact path='/login' component={LoginPage} />
-            <Route exact path='/post' component={AddPostPage} />
-            <Route exact path='/edit/:postId' component={EditPostPage} />
-            <Route exact path='/friends' component={FriendsListPage} />
-            <Route exact path='/friends/:userId' component={FriendsPage} />
-            <Route component={ErrorPage} />
+            <Route exact path='/register' component={UserCreationPage} />
+            <PrivateRoute exact path='/' component={HomePage} />
+            <PrivateRoute exact path='/post' component={AddPostPage} />
+            <PrivateRoute exact path='/edit/:postId' component={EditPostPage} />
+            <PrivateRoute exact path='/friends' component={FriendsListPage} />
+            <PrivateRoute exact path='/friends/:userId' component={FriendsPage} />
+            <PrivateRoute component={ErrorPage} />
           </Switch>
         </Container>
       </UserProvider>
     </div>
   );
 };
+
+function PrivateRoute ({component: Component, ...rest}) {
+  const { user } = useUserState();
+  return (
+    <Route
+      {...rest}
+      render={(props) => user.isLoggedIn === true
+        ? <Component {...props} />
+        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+    />
+  )
+}
 
 export default App;

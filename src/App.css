@@ -1,56 +1,56 @@
 .card {
-  margin: 10px;
+	margin: 10px;
 }
 
 .postDate {
-  font-size: 12px;
-  color: grey;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+	font-size: 12px;
+	color: grey;
+	position: absolute;
+	top: 5px;
+	right: 5px;
 }
 
 .card:hover .editPostBtn {
-  visibility: visible;
+	visibility: visible;
 }
 
 .card .editPostBtn {
-  visibility: hidden;
-  position: absolute;
-  top: 15px;
-  right: 15px;
+	visibility: hidden;
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 
 #editFormBtns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .invalid {
-  color: red !important;
+	color: red !important;
 }
 
 #logoutBtn {
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 #loginRegisterFormContainer {
-  min-width: 300px;
-  max-width: 500px;
-  margin: 0 auto;
-  padding-top: 50px;
+	min-width: 300px;
+	max-width: 500px;
+	margin: 0 auto;
+	padding-top: 50px;
 }
 
 #loginRegisterFormHeader {
-  padding-bottom: 25px;
+	padding-bottom: 25px;
 }
 
 #loginRegisterErrorText {
-  text-align: center;
-  color: red;
+	text-align: center;
+	color: red;
 }
 
 #loginRegisterLink {
-  text-align: right;
+	text-align: right;
 }

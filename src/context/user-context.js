@@ -7,7 +7,8 @@ const userDefault = {
   _id: "",
   firstName: "",
   lastName: "",
-  email: ""
+  email: "",
+  isLoggedIn: false
 }
 
 function userReducer(state, action) {

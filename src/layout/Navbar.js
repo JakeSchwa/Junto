@@ -6,18 +6,18 @@ import { useHistory } from "react-router-dom";
 import { useUserState, useUserDispatch } from "../context/user-context";
 
 const TopNavbar = () => {
-  const { user } = useUserState();
-  const dispatch = useUserDispatch();
+	const { user } = useUserState();
+	const dispatch = useUserDispatch();
 	const history = useHistory();
 
 	const logout = async () => {
 		const res = await fetch("api/auth/logout", {
 			method: "POST",
-    });
-    if (res.status === 200) {
-      dispatch({type: 'reset'});
-      history.push("/login");
-    }
+		});
+		if (res.status === 200) {
+			dispatch({ type: "reset" });
+			history.push("/login");
+		}
 	};
 
 	return (
@@ -26,19 +26,30 @@ const TopNavbar = () => {
 				<Link to='/'>
 					<Navbar.Brand>Junto</Navbar.Brand>
 				</Link>
-				<Link to='/friends'>
-					<Navbar.Text>Friends</Navbar.Text>
-				</Link>
+				{
+					user.isLoggedIn ?
+					(<Link to='/friends'>
+						<Navbar.Text>Friends</Navbar.Text>
+					</Link>) : null
+				}
 			</div>
 			<Link to='/'>
 				<Navbar.Text>{`${user.firstName} ${user.lastName}`}</Navbar.Text>
 			</Link>
-			<div id='right-section'>
-				<Button id='logoutBtn' onClick={logout}>
-					Logout
-				</Button>
-				<Link to='/post'>Post</Link>
-			</div>
+			{
+				user.isLoggedIn ?
+				(<div id='right-section'>
+					<Link to='/post'>Post</Link>
+					<Button
+						variant='outline-primary'
+						size='sm'
+						id='logoutBtn'
+						onClick={logout}
+					>
+						Logout
+					</Button>
+				</div>) : null
+			}
 		</Navbar>
 	);
 };
