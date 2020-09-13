@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useUserDispatch } from '../../context/user-context';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function UserCreationPage() {
+  const dispatch = useUserDispatch();
   const history = useHistory();
 
   const [firstNameHelper, setfirstNameHelper] = useState(
@@ -39,6 +41,8 @@ function UserCreationPage() {
           setEmailValid('invalid');
           setEmailHelper('Email is already in use. Use a diffrent email.');
         } else if (res.status === 200) {
+          const user = await res.json();
+          dispatch({type: 'set', payload: user});
           history.push("/");
         } else throw new Error('There was a network error on submitting new user.')
       } catch (error) {
