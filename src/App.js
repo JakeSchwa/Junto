@@ -24,7 +24,7 @@ const App = () => {
         <Container fluid='sm'>
           <Switch>
             <Route exact path='/' component={HomePage} />
-            <Route exact path='/newUser' component={UserCreationPage} />
+            <Route exact path='/register' component={UserCreationPage} />
             <Route exact path='/login' component={LoginPage} />
             <Route exact path='/post' component={AddPostPage} />
             <Route exact path='/edit/:postId' component={EditPostPage} />
