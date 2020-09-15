@@ -4,6 +4,7 @@ import { GrEdit } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post, self }) => {
+
   const options = {
     weekday: 'long',
     year: 'numeric',

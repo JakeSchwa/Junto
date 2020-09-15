@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { useUserState } from '../../context/user-context';
 
 const AddPostPage = ({ history }) => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const { user } = useUserState();
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -15,30 +17,30 @@ const AddPostPage = ({ history }) => {
   const handleChangeBody = (event) => {
     setBody(event.target.value);
   };
-   
+
   const submitPostDisabled = () => {
-    if(title === "" || body === "") {
-      return true
+    if (title === '' || body === '') {
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   const handleAddPost = async (event) => {
     event.preventDefault();
-    const res = await fetch("/posts", {
-      method: "POST",
+    const res = await fetch('/api/posts', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         title: title,
         body: body,
-        userId: 1
+        userId: user._id,
       }),
     });
     await res.json();
-    history.push("/");
+    history.push('/');
   };
 
   return (

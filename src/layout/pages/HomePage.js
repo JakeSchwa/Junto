@@ -1,8 +1,11 @@
-import React from "react";
-import PostList from "../../components/PostList"
+import React from 'react';
+import PostList from '../../components/PostList';
+import { useUserState } from '../../context/user-context';
 
 const HomePage = () => {
-  return <PostList userId={1} self={true}/>;
+  const { user } = useUserState();
+  console.log(user);
+  return <PostList userId={user._id} self={true} />;
 };
 
 export default HomePage;
