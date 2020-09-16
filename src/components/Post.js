@@ -4,7 +4,6 @@ import { GrEdit } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post, self }) => {
-
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -12,7 +11,7 @@ const Post = ({ post, self }) => {
     day: 'numeric',
   };
   const date = new Date().toLocaleDateString(undefined, options);
-
+  console.log(post);
   return (
     <Card className='card'>
       <Card.Body>
@@ -21,7 +20,7 @@ const Post = ({ post, self }) => {
           <h3>{post.title}</h3>
           <Link
             className='editPostBtn'
-            to={{ pathname: `/edit/${post.id}`, state: { post } }}
+            to={{ pathname: `/edit/${post._id}`, state: { post } }}
           >
             <GrEdit hidden={!self} />
           </Link>

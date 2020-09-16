@@ -26,15 +26,16 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
 
   const handleEditPost = async (event) => {
     event.preventDefault();
-    const res = await fetch(`/posts/${params.postId}`, {
+    const res = await fetch(`/api/posts`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        _id: state.post._id,
+        userId: state.post.userId,
         title: title,
         body: body,
-        userId: 1,
       }),
     });
     await res.json();
@@ -43,7 +44,7 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
 
   const handleDeletePost = async (event) => {
     event.preventDefault();
-    const res = await fetch(`/posts/${params.postId}`, {
+    const res = await fetch(`/api/posts/delete/${params.postId}`, {
       method: 'DELETE',
     });
     await res.json();
