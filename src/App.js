@@ -1,6 +1,8 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
 
 import TopNavbar from './layout/Navbar';
 import HomePage from './layout/pages/HomePage';
@@ -14,7 +16,7 @@ import LoginPage from './layout/pages/LoginPage';
 
 import Container from 'react-bootstrap/Container';
 
-import { UserProvider, useUserState } from './context/user-context';
+import { UserProvider } from './context/user-context';
 
 const App = () => {
   return (
@@ -23,31 +25,19 @@ const App = () => {
         <TopNavbar />
         <Container fluid='sm'>
           <Switch>
-            <Route exact path='/login' component={LoginPage} />
-            <Route exact path='/register' component={UserCreationPage} />
             <PrivateRoute exact path='/' component={HomePage} />
+            <PublicRoute exact path='/login' restricted={true} component={LoginPage} />
+            <PublicRoute exact path='/register' restricted={true} component={UserCreationPage} />
             <PrivateRoute exact path='/post' component={AddPostPage} />
             <PrivateRoute exact path='/edit/:postId' component={EditPostPage} />
             <PrivateRoute exact path='/friends' component={FriendsListPage} />
             <PrivateRoute exact path='/friends/:userId' component={FriendsPage} />
-            <PrivateRoute component={ErrorPage} />
+            <PublicRoute restricted={false} component={ErrorPage} />
           </Switch>
         </Container>
       </UserProvider>
     </div>
   );
 };
-
-function PrivateRoute ({component: Component, ...rest}) {
-  const { user } = useUserState();
-  return (
-    <Route
-      {...rest}
-      render={(props) => user.isLoggedIn === true
-        ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
-    />
-  )
-}
 
 export default App;

@@ -14,9 +14,12 @@ const userDefault = {
 function userReducer(state, action) {
   switch (action.type) {
     case 'set': {
-      return {user: action.payload}
+      const user = action.payload
+      window.localStorage.setItem("user", JSON.stringify(user))
+      return {user: user}
     }
     case 'reset': {
+      window.localStorage.removeItem("user")
       return {user: userDefault}
     }
     default: {
@@ -25,8 +28,17 @@ function userReducer(state, action) {
   }
 }
 
+function grabPersistedUser() {
+  const persistedUser = window.localStorage.getItem("user") 
+  return persistedUser ? JSON.parse(persistedUser) : userDefault;
+}
+
 function UserProvider({children}) {
-  const [state, dispatch] = React.useReducer(userReducer, {user: userDefault})
+  const [state, dispatch] = React.useReducer(
+    userReducer, 
+    {user: grabPersistedUser()}
+  )
+
   return (
     <UserStateContext.Provider value={state}>
       <UserDispatchContext.Provider value={dispatch}>
