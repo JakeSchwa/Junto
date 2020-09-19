@@ -4,7 +4,6 @@ import { useUserState } from '../../context/user-context';
 
 const HomePage = () => {
   const { user } = useUserState();
-  console.log(user);
   return <PostList userId={user._id} self={true} />;
 };
 

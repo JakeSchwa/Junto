@@ -4,7 +4,6 @@ import { useUserState } from '../context/user-context';
 
 const PublicRoute = ({component: Component, restricted, ...rest}) => {
   const { user } = useUserState();
-  console.log("Public route | user: ", user);
   return (
     // restricted = false meaning public route
     // restricted = true meaning restricted route

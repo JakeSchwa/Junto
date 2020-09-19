@@ -4,7 +4,6 @@ import { useUserState } from '../context/user-context';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
   const { user } = useUserState();
-  console.log("Private route | user: ", user);
   return (
     // Show the component only when the user is logged in
     // Otherwise, redirect the user to /login page

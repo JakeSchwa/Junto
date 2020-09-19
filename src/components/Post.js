@@ -11,7 +11,6 @@ const Post = ({ post, self }) => {
     day: 'numeric',
   };
   const date = new Date().toLocaleDateString(undefined, options);
-  console.log(post);
   return (
     <Card className='card'>
       <Card.Body>
