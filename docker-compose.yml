@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: 'nginx:1.19'
+    # working_dir: /home/node/app
+    # command: "npm start"
+    volumes:
+      - ./build:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    environment:
+      - NODE_ENV=production
