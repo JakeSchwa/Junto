@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
@@ -24,16 +24,16 @@ const App = () => {
       <UserProvider>
         <TopNavbar />
         <Container fluid='sm'>
-          <Switch>
-            <PrivateRoute exact path='/' component={HomePage} />
-            <PublicRoute exact path='/login' restricted={true} component={LoginPage} />
-            <PublicRoute exact path='/register' restricted={true} component={UserCreationPage} />
-            <PrivateRoute exact path='/post' component={AddPostPage} />
-            <PrivateRoute exact path='/edit/:postId' component={EditPostPage} />
-            <PrivateRoute exact path='/friends' component={FriendsListPage} />
-            <PrivateRoute exact path='/friends/:userId' component={FriendsPage} />
-            <PublicRoute restricted={false} component={ErrorPage} />
-          </Switch>
+          <Routes>
+            <Route path='/' element={<PrivateRoute><HomePage /></PrivateRoute>} />
+            <Route path='/login' element={<PublicRoute restricted={true}><LoginPage /></PublicRoute>} />
+            <Route path='/register' element={<PublicRoute restricted={true}><UserCreationPage /></PublicRoute>} />
+            <Route path='/post' element={<PrivateRoute><AddPostPage /></PrivateRoute>} />
+            <Route path='/edit/:postId' element={<PrivateRoute><EditPostPage /></PrivateRoute>} />
+            <Route path='/friends' element={<PrivateRoute><FriendsListPage /></PrivateRoute>} />
+            <Route path='/friends/:userId' element={<PrivateRoute><FriendsPage /></PrivateRoute>} />
+            <Route path='*' element={<PublicRoute restricted={false}><ErrorPage /></PublicRoute>} />
+          </Routes>
         </Container>
       </UserProvider>
     </div>

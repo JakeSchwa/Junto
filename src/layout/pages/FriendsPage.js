@@ -1,8 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import PostList from "../../components/PostList"
 
-const FriendsPage = ( { match: { params }} ) => {
-  return <PostList userId={params.userId} self={false}/>;
+const FriendsPage = () => {
+  const { userId } = useParams();
+  return <PostList userId={userId} self={false}/>;
 };
 
 export default FriendsPage;

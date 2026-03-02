@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUserState, useUserDispatch } from "../context/user-context";
 
 const TopNavbar = () => {
 	const { user } = useUserState();
 	const dispatch = useUserDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const logout = async () => {
 		const res = await fetch("api/auth/logout", {
@@ -16,7 +16,7 @@ const TopNavbar = () => {
 		});
 		if (res.status === 200) {
 			dispatch({ type: "reset" });
-			history.push("/login");
+			navigate("/login");
 		}
 	};
 

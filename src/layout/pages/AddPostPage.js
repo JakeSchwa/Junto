@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useUserState } from '../../context/user-context';
 
-const AddPostPage = ({ history }) => {
+const AddPostPage = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const { user } = useUserState();
+  const navigate = useNavigate();
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -40,7 +41,7 @@ const AddPostPage = ({ history }) => {
       }),
     });
     await res.json();
-    history.push('/');
+    navigate('/');
   };
 
   return (
@@ -71,4 +72,4 @@ const AddPostPage = ({ history }) => {
   );
 };
 
-export default withRouter(AddPostPage);
+export default AddPostPage;

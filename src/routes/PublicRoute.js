@@ -1,21 +1,10 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useUserState } from '../context/user-context';
 
-const PublicRoute = ({component: Component, restricted, ...rest}) => {
+const PublicRoute = ({ children, restricted }) => {
   const { user } = useUserState();
-  return (
-    // restricted = false meaning public route
-    // restricted = true meaning restricted route
-    <Route 
-      {...rest} 
-      render={props => (
-        user.isLoggedIn && restricted ?
-          <Redirect to="/" />
-        : <Component {...props} />
-      )} 
-    />
-    );
+  return user.isLoggedIn && restricted ? <Navigate to="/" replace /> : children;
 };
 
 export default PublicRoute;
