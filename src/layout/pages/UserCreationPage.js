@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useUserDispatch } from '../../context/user-context';
 
 import Form from 'react-bootstrap/Form';
@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function UserCreationPage() {
   const dispatch = useUserDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [firstNameHelper, setfirstNameHelper] = useState(
     'First Name must be between 2 and 50 characters long'
@@ -44,7 +44,7 @@ function UserCreationPage() {
         } else if (res.status === 200) {
           const user = await res.json();
           dispatch({type: 'set', payload: user});
-          history.push("/");
+          navigate("/");
         } else throw new Error('There was a network error on submitting new user.')
       } catch (error) {
         setErrorText("Could not create new user. Please try again.")

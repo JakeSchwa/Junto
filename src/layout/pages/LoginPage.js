@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useUserDispatch } from '../../context/user-context';
 
 import Form from 'react-bootstrap/Form';
@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function LoginPage() {
   const dispatch = useUserDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [errorText, setErrorText] = useState('');
 
@@ -30,7 +30,7 @@ function LoginPage() {
       const user = await res.json();
       user.isLoggedIn = true
       dispatch({type: 'set', payload: user});
-      history.push('/');
+      navigate('/');
       setErrorText('');
     }
   };

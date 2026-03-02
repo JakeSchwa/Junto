@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const EditPostPage = ({ history, match: { params }, location: { state } }) => {
+const EditPostPage = () => {
+  const navigate = useNavigate();
+  const { postId } = useParams();
+  const { state } = useLocation();
+
   const [title, setTitle] = useState(state.post ? state.post.title : '');
   const [body, setBody] = useState(state.post ? state.post.body : '');
 
@@ -39,16 +43,16 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
       }),
     });
     await res.json();
-    history.push('/');
+    navigate('/');
   };
 
   const handleDeletePost = async (event) => {
     event.preventDefault();
-    const res = await fetch(`/api/posts/delete/${params.postId}`, {
+    const res = await fetch(`/api/posts/delete/${postId}`, {
       method: 'DELETE',
     });
     await res.json();
-    history.push('/');
+    navigate('/');
   };
 
   return (
@@ -88,4 +92,4 @@ const EditPostPage = ({ history, match: { params }, location: { state } }) => {
   );
 };
 
-export default withRouter(EditPostPage);
+export default EditPostPage;
